@@ -1,2 +1,2 @@
-# C--Practice
+# C++ Practice
 c++ practice
