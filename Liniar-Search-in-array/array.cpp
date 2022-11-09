@@ -12,11 +12,11 @@ using namespace std;
     for (i = 0; i < size; i++)
         cin >> arr[i];
 
-      cout << "Enserted elements of Array is : ";
+      cout << "Inserted elements of Array is : ";
     for (i = 0; i < size; i++)
         cout << arr[i] << " ";
 
-    cout << "\nEnserted the search Item : ";
+    cout << "\Insert the search Item : ";
     cin >> item;
 
       while (arr[position] != item && position < size)

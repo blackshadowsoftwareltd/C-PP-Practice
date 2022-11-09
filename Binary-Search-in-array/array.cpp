@@ -11,11 +11,11 @@ int main()
     for (i = 0; i < size; i++)
         cin >> arr[i];
 
-    cout << "Enserted elements of Array is : ";
+    cout << "Inserted elements of Array is : ";
     for (i = 0; i < size; i++)
         cout << arr[i] << " ";
 
-    cout << "\nEnserted the search Item : ";
+    cout << "\ Inserte the search Item : ";
     cin >> item;
 
     while (beg <= end && arr[mid] != item)
