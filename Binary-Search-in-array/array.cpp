@@ -3,10 +3,10 @@ using namespace std;
 
 int main()
 {
-    int size, i, item, beg = 0;
+    int size, i, item, start = 0;
     cout << "Enter the size of an Array : ";
     cin >> size;
-    int arr[size], end = size - 1, mid = (beg + end) / 2;
+    int arr[size], end = size - 1, mid = (start + end) / 2;
     cout << "Enter the elements of an Array : ";
     for (i = 0; i < size; i++)
         cin >> arr[i];
@@ -18,13 +18,13 @@ int main()
     cout << "\ Inserte the search Item : ";
     cin >> item;
 
-    while (beg <= end && arr[mid] != item)
+    while (start <= end && arr[mid] != item)
     {
         if (item > arr[mid])
-            beg = mid + 1;
+            start = mid + 1;
         else
             end = mid - 1;
-        mid = (beg + end) / 2;
+        mid = (start + end) / 2;
     }
 
     if (arr[mid] == item)
