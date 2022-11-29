@@ -10,11 +10,12 @@ char getUserInitInput();
 int availableBookingSpace();
 void viewAllBookings();
 void printAvailableBookingSpace();
+void removeBooking();
 
 ///! global variables
 int length = 0;
 int bookings[5];
-char initInput;
+char initInput, charInput;
 
 ///! print init options
 void printInitOptions()
@@ -24,7 +25,8 @@ void printInitOptions()
          << "Enter 'E' to Check the total available booking space. " << endl
          << "Enter 'B' to book an available space. " << endl
          << "Enter 'R' to remove the booking. " << endl
-         << "Enter 'P' to View all booked list. " << endl;
+         << "Enter 'P' to View all booked list. " << endl
+         << "Enter : ";
 }
 
 ///! get users init input
@@ -53,6 +55,8 @@ int availableBookingSpace()
     cout << "Available booking space: " << 5 - length << endl;
     return 5 - length;
 }
+
+///! view all bookings
 void printAvailableBookingSpace()
 {
     cout << "Available booking space: " << 5 - length << endl
@@ -65,7 +69,8 @@ void bookAnAvailableSpace()
 {
     if (length < 5)
     {
-        cout << "Enter the booking number: ";
+        cout << endl
+             << "Enter the booking number: ";
         cin >> bookings[length];
         length++;
         cout << "Booking successful." << endl
@@ -78,7 +83,8 @@ void bookAnAvailableSpace()
     }
     project();
 }
-///! start the project
+
+///! view All Bookings
 void viewAllBookings()
 {
     cout << endl
@@ -90,6 +96,31 @@ void viewAllBookings()
     cout << endl;
     project();
 }
+
+///! remove booking
+void removeBooking()
+{
+    charInput = 'Z';
+    cout << endl
+         << "Enter 'P' to remove by items Position." << endl
+         << "Enter 'I' to remove by item." << endl
+         << "Enter : ";
+    cin >> charInput;
+    if (charInput == 'P' || charInput == 'p')
+    {
+        }
+    else if (charInput == 'I' || charInput == 'i')
+    {
+    }
+    else
+    {
+        cout << endl
+             << "Invalid input. Please try again." << endl;
+        removeBooking();
+    }
+}
+
+///! start the project
 int project()
 {
     char x = getUserInitInput();
