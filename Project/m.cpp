@@ -11,11 +11,13 @@ int availableBookingSpace();
 void viewAllBookings();
 void printAvailableBookingSpace();
 void removeBooking();
+void removeBookingById(int id);
 
 ///! global variables
 int length = 0;
 int bookings[5];
 char initInput, charInput;
+int i, intInput;
 
 ///! print init options
 void printInitOptions()
@@ -61,7 +63,6 @@ void printAvailableBookingSpace()
 {
     cout << "Available booking space: " << 5 - length << endl
          << endl;
-    project();
 }
 
 ///! book an available space
@@ -78,10 +79,8 @@ void bookAnAvailableSpace()
     }
     else
     {
-        cout << "No available booking space." << endl
-             << endl;
+        cout << "No available booking space." << endl;
     }
-    project();
 }
 
 ///! view All Bookings
@@ -89,28 +88,57 @@ void viewAllBookings()
 {
     cout << endl
          << "All bookings: " << endl;
-    for (int i = 0; i < length; i++)
+    if (length == 0)
+    {
+        cout << "No bookings." << endl;
+        return;
+    }
+
+    for (i = 0; i < length; i++)
     {
         cout << bookings[i] << endl;
     }
-    cout << endl;
-    project();
 }
 
 ///! remove booking
 void removeBooking()
 {
+    if (length == 0)
+    {
+        cout << "No bookings found to remove !!." << endl;
+        return;
+    }
     charInput = 'Z';
+    intInput = -1;
+
     cout << endl
          << "Enter 'P' to remove by items Position." << endl
          << "Enter 'I' to remove by item." << endl
+         << "Enter 'X' to Exit Previous." << endl
          << "Enter : ";
     cin >> charInput;
     if (charInput == 'P' || charInput == 'p')
     {
+        cout << endl
+             << "Enter Position of data to remove ." << endl
+             << "Enter : ";
+        cin >> intInput;
+        if (intInput < 1 || intInput > length)
+        {
+            cout << "Invalid input. Please try again." << endl;
+            return removeBooking();
         }
+        else
+        {
+            removeBookingById(intInput - 1);
+        }
+    }
     else if (charInput == 'I' || charInput == 'i')
     {
+    }
+    else if (charInput == 'X' || charInput == 'x')
+    {
+        return;
     }
     else
     {
@@ -118,6 +146,13 @@ void removeBooking()
              << "Invalid input. Please try again." << endl;
         removeBooking();
     }
+}
+void removeBookingById(int id)
+{
+    for (i = id; i < length; i++)
+        bookings[i - 1] = bookings[i];
+    cout << "Booking removed successfully." << endl;
+    length = length - 1;
 }
 
 ///! start the project
@@ -130,6 +165,8 @@ int project()
         bookAnAvailableSpace();
     else if (x == 'P')
         viewAllBookings();
+    else if (x == 'R')
+        removeBooking();
     cout
         << endl;
 
@@ -138,7 +175,11 @@ int project()
 ///! Main function
 int main()
 {
-    project();
+    while (true)
+    {
+        project();
+    }
+
     return 0;
 }
 
