@@ -113,10 +113,11 @@ void removeBooking()
 
     cout << endl
          << "Enter 'P' to remove by items Position." << endl
-         << "Enter 'I' to remove by item." << endl
+         << "Enter 'I' to remove by item ID." << endl
          << "Enter 'X' to Exit Previous." << endl
          << "Enter : ";
     cin >> charInput;
+    ///? remove by position
     if (charInput == 'P' || charInput == 'p')
     {
         cout << endl
@@ -133,13 +134,17 @@ void removeBooking()
             removeBookingById(intInput - 1);
         }
     }
+    ///? remove by Item Id
     else if (charInput == 'I' || charInput == 'i')
     {
+        // TODO: remove by item id
     }
+    ///? Exit from deletion
     else if (charInput == 'X' || charInput == 'x')
     {
         return;
     }
+    ///? Invalid input
     else
     {
         cout << endl
@@ -147,6 +152,7 @@ void removeBooking()
         removeBooking();
     }
 }
+///! remove booking by id
 void removeBookingById(int id)
 {
     for (i = id; i < length; i++)
@@ -169,7 +175,6 @@ int project()
         removeBooking();
     cout
         << endl;
-
     return 0;
 }
 ///! Main function
