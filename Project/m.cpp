@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "bits/stdc++.h"
 #include <array>
+#include "read.h"
+#include "read.cpp"
 using namespace std;
 ///! methods
 int project();
@@ -180,6 +182,7 @@ int project()
 ///! Main function
 int main()
 {
+    read();
     while (true)
     {
         project();
