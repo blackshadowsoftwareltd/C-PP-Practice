@@ -1,4 +1,6 @@
 #ifndef input_h
 #define input_h
-void input();
+
+char getUserInitInput();
+
 #endif

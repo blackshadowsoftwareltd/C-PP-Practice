@@ -1,4 +1,6 @@
 #ifndef write_h
 #define write_h
-void write();
+
+void bookAnAvailableSpace();
+
 #endif

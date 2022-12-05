@@ -1,4 +1,6 @@
 #ifndef delete_h
 #define delete_h
-void deleteData();
+void removeBooking();
+void removeBookingById(int id);
+
 #endif
