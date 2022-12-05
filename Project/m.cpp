@@ -4,6 +4,12 @@
 #include <array>
 #include "read.h"
 #include "read.cpp"
+#include "write.h"
+#include "write.cpp"
+#include "update.h"
+#include "update.cpp"
+#include "delete.h"
+#include "delete.cpp"
 using namespace std;
 ///! methods
 int project();
@@ -183,6 +189,9 @@ int project()
 int main()
 {
     read();
+    write();
+    update();
+    deleteData();
     while (true)
     {
         project();
