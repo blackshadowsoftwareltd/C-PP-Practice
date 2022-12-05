@@ -10,6 +10,8 @@
 #include "update.cpp"
 #include "delete.h"
 #include "delete.cpp"
+#include "data.h"
+#include "data.cpp"
 using namespace std;
 ///! methods
 int project();
@@ -22,10 +24,6 @@ void removeBooking();
 void removeBookingById(int id);
 
 ///! global variables
-int length = 0;
-int bookings[5];
-char initInput, charInput;
-int i, intInput;
 
 ///! print init options
 void printInitOptions()
