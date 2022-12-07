@@ -1,5 +1,6 @@
 #include "data.h"
+#include <iostream>
 
-int i, intInput, length;
+int length, i, intInput;
 int bookings[5];
 char charInput, initInput;
