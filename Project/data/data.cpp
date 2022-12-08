@@ -4,3 +4,4 @@
 int length, i, intInput;
 int bookings[5];
 char charInput, initInput;
+struct Booking bookings[5];
