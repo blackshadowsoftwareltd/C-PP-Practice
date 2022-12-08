@@ -1,8 +1,8 @@
-#include "write.h"
 #include <iostream>
 using namespace std;
-#include "data.h"
-#include "data.cpp"
+#include "data/data.h"
+#include "data/data.cpp"
+#include "write/write.h"
 
 ///! book an available space
 void bookAnAvailableSpace()

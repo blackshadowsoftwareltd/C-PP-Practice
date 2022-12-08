@@ -1,9 +1,8 @@
-
-#include "print.h"
 #include <iostream>
 using namespace std;
-#include "data.h"
-#include "data.cpp"
+#include "data/data.h"
+#include "data/data.cpp"
+#include "print/print.h"
 
 ///! print init options
 int printInitOptions()

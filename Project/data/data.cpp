@@ -1,4 +1,4 @@
-#include "data.h"
+#include "data/data.h"
 #include <iostream>
 
 int length, i, intInput;

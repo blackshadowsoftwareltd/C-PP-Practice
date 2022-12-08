@@ -1,10 +1,11 @@
-#include "input.h"
+
 #include <iostream>
 using namespace std;
-#include "data.h"
-#include "data.cpp"
-#include "print.h"
-#include "print.cpp"
+#include "data/data.h"
+#include "data/data.cpp"
+#include "print/print.h"
+#include "print/print.cpp"
+#include "input/input.h"
 
 ///! get users init input
 char getUserInitInput()
