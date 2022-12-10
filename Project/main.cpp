@@ -21,12 +21,12 @@ using namespace std;
 ///! methods
 int project();
 
-int availableBookingSpace();
+int availablebookingsOldpace();
 
 ///! global variables
 
 ///! get available booking space
-int availableBookingSpace()
+int availablebookingsOldpace()
 {
     cout << "Available booking space: " << 5 - length << endl;
     return 5 - length;
@@ -37,11 +37,11 @@ int project()
 {
     char x = getUserInitInput();
     if (x == 'E')
-        printAvailableBookingSpace();
+        printAvailablebookingsOldpace();
     else if (x == 'B')
         bookAnAvailableSpace();
     else if (x == 'P')
-        viewAllBookings();
+        viewAllbookingsOld();
     else if (x == 'R')
         removeBooking();
     cout
@@ -60,4 +60,4 @@ int main()
     return 0;
 }
 
-//   cout << "The Length of the Array is : " << end(bookings) - begin(bookings); // length
+//   cout << "The Length of the Array is : " << end(bookingsOld) - begin(bookingsOld); // length

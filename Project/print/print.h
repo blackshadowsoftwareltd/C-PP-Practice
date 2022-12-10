@@ -2,7 +2,7 @@
 #define print_h
 
 int printInitOptions();
-int printAvailableBookingSpace();
-int viewAllBookings();
+int printAvailablebookingsOldpace();
+int viewAllbookingsOld();
 
 #endif

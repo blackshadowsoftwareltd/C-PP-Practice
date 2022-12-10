@@ -17,28 +17,28 @@ int printInitOptions()
     return 0;
 }
 
-///! view all bookings
-int printAvailableBookingSpace()
+///! view all bookingsOld
+int printAvailablebookingsOldpace()
 {
     cout << "Available booking space: " << 5 - length << endl
          << endl;
     return 0;
 }
 
-///! view All Bookings
-int viewAllBookings()
+///! view All bookingsOld
+int viewAllbookingsOld()
 {
     cout << endl
-         << "All bookings: " << endl;
+         << "All bookingsOld: " << endl;
     if (length == 0)
     {
-        cout << "No bookings." << endl;
+        cout << "No bookingsOld." << endl;
         return;
     }
 
     for (i = 0; i < length; i++)
     {
-        cout << bookings[i] << endl;
+        cout << bookingsOld[i] << endl;
     }
     return 0;
 }

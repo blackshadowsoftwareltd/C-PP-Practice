@@ -1,8 +1,9 @@
 #include "struct/booking.h"
-#include "struct/booking.cpp"
+#include <iostream>
+using namespace std;
 
-struct
-    Booking
+struct Booking
 {
-    /* data */
+    int id;
+    string name;
 };

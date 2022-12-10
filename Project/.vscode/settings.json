@@ -6,6 +6,7 @@
     "iostream": "cpp",
     "ostream": "cpp",
     "valarray": "cpp",
-    "regex": "cpp"
+    "regex": "cpp",
+    "thread": "cpp"
   }
 }

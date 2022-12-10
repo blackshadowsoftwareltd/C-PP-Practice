@@ -11,7 +11,7 @@ void bookAnAvailableSpace()
     {
         cout << endl
              << "Enter the booking number: ";
-        cin >> bookings[length];
+        cin >> bookingsOld[length];
         length++;
         cout << "Booking successful." << endl
              << endl;

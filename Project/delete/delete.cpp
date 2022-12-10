@@ -9,7 +9,7 @@ void removeBooking()
 {
     if (length == 0)
     {
-        cout << "No bookings found to remove !!." << endl;
+        cout << "No bookingsOld found to remove !!." << endl;
         return;
     }
     charInput = 'Z';
@@ -60,7 +60,7 @@ void removeBooking()
 void removeBookingById(int id)
 {
     for (i = id; i < length; i++)
-        bookings[i - 1] = bookings[i];
+        bookingsOld[i - 1] = bookingsOld[i];
     cout << "Booking removed successfully." << endl;
     length = length - 1;
 }
