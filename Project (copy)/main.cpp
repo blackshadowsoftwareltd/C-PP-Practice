@@ -3,26 +3,30 @@ using namespace std;
 #include <stdio.h>
 #include "bits/stdc++.h"
 #include <array>
-///* Global variables ===================================================
-int length, i, intInput;
-int bookingsOld[5];
-char charInput, initInput;
 ///* Struct =====================================================
 struct Booking
 {
-    int id;
+    int id, slots, days;
+    double cost;
     string name;
+    bool isBooked;
 };
+///* Global variables ===================================================
+int length, i, flag, intInput;
+int bookingsOld[5];
+char charInput, initInput;
 Booking bookings[5];
-///* functions define ===================================================
 
+///* functions define ===================================================
+void init();
 int project();
 char getUserInitInput();
-int availablebookingsOldpace();
+int totalAvailableBookingSpace();
 int printInitOptions();
-int viewAllbookingsOld();
+int viewAllbookings();
+int viewAllEmtpybookings();
 void bookAnAvailableSpace();
-void printAvailablebookingsOldpace();
+void printAvailablebookingspace();
 void removeBooking();
 void removeBookingById(int id);
 ///! global variables
@@ -30,7 +34,7 @@ void removeBookingById(int id);
 ///! Main function
 int main()
 {
-
+    init();
     while (true)
     {
         project();
@@ -44,18 +48,17 @@ int project()
 {
     char x = getUserInitInput();
     if (x == 'E')
-        printAvailablebookingsOldpace();
+        printAvailablebookingspace();
     else if (x == 'B')
         bookAnAvailableSpace();
     else if (x == 'P')
-        viewAllbookingsOld();
+        viewAllbookings();
     // else if (x == 'R')
     // removeBooking();
     cout
         << endl;
     return 0;
 }
-
 ///* Input functions ====================================================
 ///! get users init input
 char getUserInitInput()
@@ -89,57 +92,75 @@ int printInitOptions()
          << "Enter : ";
     return 0;
 }
-
 ///! view All bookingsOld
-int viewAllbookingsOld()
+int viewAllbookings()
 {
+    flag = 0;
     cout << endl
-         << "All bookingsOld: " << endl;
-    if (length == 0)
-    {
-        cout << "No bookingsOld." << endl;
-        return 0;
-    }
-
+         << "All bookings : " << endl;
     for (i = 0; i < length; i++)
     {
-        cout << bookingsOld[i] << endl;
+        if (bookings[i].isBooked)
+        {
+            flag = 1;
+            cout << "ID : " << bookings[i].id << ", Name : " << bookings[i].name << ", Cost : " << bookings[i].cost << ", Slots : " << bookings[i].slots << ", For " << bookings[i].slots << "Days," << endl;
+        }
+    }
+    if (flag == 0)
+    {
+        cout << "No bookings found." << endl;
+    }
+    return 0;
+}
+int viewAllEmtpybookings()
+{
+    flag = 0;
+    cout << endl
+         << "All Empty bookings : " << endl;
+    for (i = 0; i < length; i++)
+    {
+        if (!bookings[i].isBooked)
+        {
+            flag = 1;
+            cout << "ID : " << bookings[i].id << ", Cost : " << bookings[i].cost << endl;
+        }
+    }
+    if (flag == 0)
+    {
+        cout << "No Empty bookings found." << endl;
     }
     return 0;
 }
 ///! view all bookingsOld
-void printAvailablebookingsOldpace()
+void printAvailablebookingspace()
 {
-    cout << "Available booking space: " << 5 - length << endl
+    flag = 0;
+    for (i = 0; i < length; i++)
+    {
+        if (!bookings[i].isBooked)
+        {
+            flag++;
+        }
+    }
+    cout << "Available booking space: " << flag << endl
          << endl;
 }
 ///* Booking functions ==================================================
 ///! book an available space
 void bookAnAvailableSpace()
 {
-    if (length < 5)
+    i = totalAvailableBookingSpace();
+    if (i == 0)
     {
-        cout << endl
-             << "Enter  : ";
-        cin >> bookingsOld[length];
-        length++;
-        cout << "Booking successful." << endl
-             << endl;
+        cout << "No Empty bookings space found." << endl;
+        return;
     }
-    else
-    {
-        cout << "No available booking space." << endl;
-    }
+    viewAllEmtpybookings();
+    // TODO : get user input
 }
 ///* Read functions =====================================================
-///! get available booking space
-int availablebookingsOldpace()
-{
-    cout << "Available booking space: " << 5 - length << endl;
-    return 5 - length;
-}
-///* Remove functions ===================================================
 
+///* Remove functions ===================================================
 ///! remove booking
 void removeBooking()
 {
@@ -202,3 +223,25 @@ void removeBookingById(int id)
 }
 
 ///* Helper functions ===================================================
+void init()
+{
+    length = 5;
+    for (i = 0; i < 6; i++)
+    {
+        bookings[i].id = i + 1;
+        bookings[i].isBooked = false;
+        bookings[i].cost = 500.0;
+    }
+} ///! get available booking space
+int totalAvailableBookingSpace()
+{
+    flag = 0;
+    for (i = 0; i < length; i++)
+    {
+        if (!bookings[i].isBooked)
+        {
+            flag++;
+        }
+    }
+    return flag;
+}
