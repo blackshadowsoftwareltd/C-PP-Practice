@@ -3,8 +3,6 @@ using namespace std;
 #include <stdio.h>
 #include "bits/stdc++.h"
 #include <array>
-#include "read/read.h"
-#include "read/read.cpp"
 #include "write/write.h"
 #include "write/write.cpp"
 #include "update/update.h"
