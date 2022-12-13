@@ -3,6 +3,8 @@ using namespace std;
 #include <stdio.h>
 #include "bits/stdc++.h"
 #include <array>
+
+///* ====================================================================
 ///* Struct =====================================================
 struct Booking
 {
@@ -11,12 +13,15 @@ struct Booking
     string name;
     bool isBooked;
 };
+
+///* ====================================================================
 ///* Global variables ===================================================
 int length, i, flag, intInput;
 int bookingsOld[5];
 char charInput, initInput;
 Booking bookings[5];
 
+///* ====================================================================
 ///* functions define ===================================================
 void init();
 int project();
@@ -30,6 +35,8 @@ void printAvailablebookingspace();
 void removeBooking();
 void removeBookingById(int id);
 ///! global variables
+
+///* ====================================================================
 ///* Main function ======================================================
 ///! Main function
 int main()
@@ -42,6 +49,8 @@ int main()
 
     return 0;
 }
+
+///* ====================================================================
 ///* Project functions ==================================================
 ///! start the project
 int project()
@@ -59,6 +68,8 @@ int project()
         << endl;
     return 0;
 }
+
+///* ====================================================================
 ///* Input functions ====================================================
 ///! get users init input
 char getUserInitInput()
@@ -79,6 +90,8 @@ char getUserInitInput()
         return getUserInitInput();
     }
 }
+
+///* ====================================================================
 ///* Print functions ====================================================
 ///! print init options
 int printInitOptions()
@@ -112,6 +125,7 @@ int viewAllbookings()
     }
     return 0;
 }
+///! view All Empty bookings
 int viewAllEmtpybookings()
 {
     flag = 0;
@@ -145,6 +159,8 @@ void printAvailablebookingspace()
     cout << "Available booking space: " << flag << endl
          << endl;
 }
+
+///* ====================================================================
 ///* Booking functions ==================================================
 ///! book an available space
 void bookAnAvailableSpace()
@@ -158,8 +174,11 @@ void bookAnAvailableSpace()
     viewAllEmtpybookings();
     // TODO : get user input
 }
+
+///* ====================================================================
 ///* Read functions =====================================================
 
+///* ====================================================================
 ///* Remove functions ===================================================
 ///! remove booking
 void removeBooking()
@@ -222,6 +241,7 @@ void removeBookingById(int id)
     length = length - 1;
 }
 
+///* ====================================================================
 ///* Helper functions ===================================================
 void init()
 {
