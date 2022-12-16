@@ -16,7 +16,7 @@ struct Booking
 
 ///* ====================================================================
 ///* Global variables ===================================================
-int length, i, flag, intInput;
+int length, i, flag, intInput, temp;
 int bookingsOld[5];
 char charInput, initInput;
 Booking bookings[5];
@@ -34,6 +34,7 @@ void bookAnAvailableSpace();
 void printAvailablebookingspace();
 void removeBooking();
 void removeBookingById(int id);
+int checkIsItEmtyBook(int x);
 ///? global variables
 
 ///* ====================================================================
@@ -150,8 +151,7 @@ void printAvailablebookingspace()
 {
     flag = 0;
     flag = totalAvailableBookingSpace();
-    cout << "Available booking space: " << flag << endl
-         << endl;
+    cout << "Available booking space: " << flag << endl;
     cout << " ";
     for (i = 0; i < flag; i++)
     {
@@ -177,6 +177,7 @@ void printAvailablebookingspace()
             cout << "====";
         }
     }
+    cout << endl;
 }
 
 ///* ====================================================================
@@ -185,13 +186,33 @@ void printAvailablebookingspace()
 void bookAnAvailableSpace()
 {
     i = totalAvailableBookingSpace();
-    if (i == 0)
+    if (i == 6)
     {
         cout << "No Empty bookings space found." << endl;
         return;
     }
-    viewAllEmtpybookings();
-    // TODO : get user input
+
+    printAvailablebookingspace();
+    intInput = length + 1;
+    cout << "Enter a slot number : ";
+    cin >> intInput;
+    if (intInput < 1 || intInput > length)
+    {
+        cout << "Invalid slot Id" << endl;
+        bookAnAvailableSpace();
+        return;
+    }
+    temp = 0;
+    temp = checkIsItEmtyBook(intInput);
+    if (temp == 0)
+    {
+        cout << "There is no empty slot in this Id" << endl;
+        bookAnAvailableSpace();
+        return;
+    }
+    // cout<<"Enter you name : ";
+    // cin>>bookings[i].name;
+    // cout<<"Enter a slot number : ";
 }
 
 ///* ====================================================================
@@ -274,13 +295,20 @@ void init()
 } ///! get available booking space
 int totalAvailableBookingSpace()
 {
-    flag = 0;
+    int f = 0;
     for (i = 0; i < length; i++)
     {
         if (!bookings[i].isBooked)
         {
-            flag++;
+            f++;
         }
     }
-    return flag;
+    return f;
+}
+int checkIsItEmtyBook(int x)
+{
+    if (!bookings[x - 1].isBooked)
+        return x;
+    else
+        return 0;
 }
