@@ -149,37 +149,32 @@ int viewAllEmtpybookings()
 void printAvailablebookingspace()
 {
     flag = 0;
-    for (i = 0; i < length; i++)
-    {
-        if (!bookings[i].isBooked)
-        {
-            flag++;
-        }
-    }
+    flag = totalAvailableBookingSpace();
     cout << "Available booking space: " << flag << endl
          << endl;
-
+    cout << " ";
     for (i = 0; i < flag; i++)
     {
         if (!bookings[i].isBooked)
         {
-            cout << "=====";
+            cout << "====";
         }
     }
-    cout << endl;
+    cout << "=" << endl;
     for (i = 0; i < flag; i++)
     {
         if (!bookings[i].isBooked)
         {
-            cout << "| " << bookings[i].id << " |";
+            cout << " | " << bookings[i].id;
         }
     }
-    cout << endl;
+    cout << " |" << endl
+         << " =";
     for (i = 0; i < flag; i++)
     {
         if (!bookings[i].isBooked)
         {
-            cout << "=====";
+            cout << "====";
         }
     }
 }
