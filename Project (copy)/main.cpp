@@ -5,7 +5,7 @@ using namespace std;
 #include <array>
 
 ///* ====================================================================
-///* Struct =====================================================
+///* Struct =============================================================
 struct Booking
 {
     int id, slots, days;
@@ -38,6 +38,8 @@ void removeBooking();
 void printAditionalInfoForBooking();
 void removeBookingById(int id);
 int checkIsItEmtyBook(int x);
+void renewBookingDays();
+void renewBookingById(int id);
 ///? global variables
 
 ///* ====================================================================
@@ -50,7 +52,6 @@ int main()
     {
         project();
     }
-
     return 0;
 }
 
@@ -68,6 +69,8 @@ int project()
         viewAllbookings();
     else if (x == 'R')
         removeBooking();
+    else if (x == 'H')
+        renewBookingDays();
     cout
         << endl;
     return 0;
@@ -88,6 +91,8 @@ char getUserInitInput()
         return 'R';
     else if (initInput == 'P' || initInput == 'p')
         return 'P';
+    else if (initInput == 'H' || initInput == 'h')
+        return 'H';
     else
     {
         cout << "Invalid input. Please try again." << endl;
@@ -102,10 +107,11 @@ int printInitOptions()
 {
     cout << endl
          << "Choose what you want." << endl
-         << "Enter 'E' to Check the total available booking space. " << endl
+         << "Enter 'E' to check the total available booking space. " << endl
          << "Enter 'B' to book an available space. " << endl
+         << "Enter 'P' to view all booked list. " << endl
+         << "Enter 'H' To renew hiring days. " << endl
          << "Enter 'R' to remove the booking. " << endl
-         << "Enter 'P' to View all booked list. " << endl
          << "Enter : ";
     return 0;
 }
@@ -120,7 +126,7 @@ int viewAllbookings()
         if (bookings[i].isBooked)
         {
             flag = 1;
-            cout << "Slot ID : " << bookings[i].id << ", Name : " << bookings[i].name << ", Cost : " << bookings[i].cost << ", Slots : " << bookings[i].slots << ", For " << bookings[i].days << " Days," << endl;
+            cout << "Slot ID : " << bookings[i].id << ", Name : " << bookings[i].name << ", Cost : " << bookings[i].cost << " TK, Slots : " << bookings[i].slots << ", For " << bookings[i].days << " Days," << endl;
         }
     }
     if (flag == 0)
@@ -254,7 +260,7 @@ void removeBooking()
 {
     if (totalAvailableBookingSpace() == 0)
     {
-        cout << "No bookingsOld found to remove !!." << endl;
+        cout << "No bookings found to remove !!." << endl;
         return;
     }
     char inputForDelete = 'Z';
@@ -297,11 +303,72 @@ void removeBooking()
 ///? remove booking by id
 void removeBookingById(int id)
 {
-
     bookings[id - 1].isBooked = false;
     cout << "Booking removed successfully." << endl;
 }
 
+///* ====================================================================
+///* update function ====================================================
+void renewBookingDays()
+{
+    if (totalAvailableBookingSpace() == 5)
+    {
+        cout << "No bookings found to rnew !!." << endl;
+        return;
+    }
+    char inputForRenew = 'Z';
+    int slIDFR = -1;
+
+    cout << endl
+         << "Enter I to renew by item ID." << endl
+         << "Enter 'X' to Exit Previous." << endl
+         << "Enter : ";
+    cin >> inputForRenew; 
+    ///? Exit from deletion
+    if (inputForRenew == 'X' || inputForRenew == 'x')
+    {
+        return;
+    }
+    ///? remove by Slot id
+    else if (inputForRenew == 'I' || inputForRenew == 'i')
+    {
+        cout << endl
+             << "Enter the Slot ID to remove : ";
+        cin >> slIDFR;
+        if (slIDFR < 1 || slIDFR > length)
+        {
+            cout << "Invalid input. Please try again." << endl;
+            return renewBookingDays();
+        }
+        else
+        {
+            renewBookingById(slIDFR);
+        }
+    }
+
+    ///? Invalid input
+    else
+    {
+        cout << endl
+             << "Invalid input. Please try again." << endl;
+        renewBookingDays();
+    }
+}
+void renewBookingById(int id)
+{
+    int days = 0;
+    cout << "Enter the number of days you want to renew : ";
+    cin >> days;
+    if (days < 1)
+    {
+        cout << "Days can not be less than 1" << endl;
+        renewBookingById(id);
+        return;
+    }
+    bookings[id - 1].days = days;
+    bookings[id - 1].cost = 100 * days;
+    cout << "Booking renewed successfully." << endl;
+}
 ///* ====================================================================
 ///* Helper functions ===================================================
 void init()
