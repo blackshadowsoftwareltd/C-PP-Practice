@@ -66,8 +66,8 @@ int project()
         bookAnAvailableSpace();
     else if (x == 'P')
         viewAllbookings();
-    // else if (x == 'R')
-    // removeBooking();
+    else if (x == 'R')
+        removeBooking();
     cout
         << endl;
     return 0;
@@ -252,41 +252,34 @@ void bookAnAvailableSpace()
 ///? remove booking
 void removeBooking()
 {
-    if (length == 0)
+    if (totalAvailableBookingSpace() == 0)
     {
         cout << "No bookingsOld found to remove !!." << endl;
         return;
     }
-    charInput = 'Z';
-    intInput = -1;
+    char inputForDelete = 'Z';
+    int slID = -1;
 
     cout << endl
-         << "Enter 'P' to remove by items Position." << endl
-         << "Enter 'I' to remove by item ID." << endl
+         << "Enter I to remove by item ID." << endl
          << "Enter 'X' to Exit Previous." << endl
          << "Enter : ";
-    cin >> charInput;
-    ///? remove by position
-    if (charInput == 'P' || charInput == 'p')
+    cin >> inputForDelete;
+    ///? remove by Slot id
+    if (inputForDelete == 'I' || inputForDelete == 'i')
     {
         cout << endl
-             << "Enter Position of data to remove ." << endl
-             << "Enter : ";
-        cin >> intInput;
-        if (intInput < 1 || intInput > length)
+             << "Enter the Slot ID to remove : ";
+        cin >> slID;
+        if (slID < 1 || slID > length)
         {
             cout << "Invalid input. Please try again." << endl;
             return removeBooking();
         }
         else
         {
-            removeBookingById(intInput - 1);
+            removeBookingById(slID);
         }
-    }
-    ///? remove by Item Id
-    else if (charInput == 'I' || charInput == 'i')
-    {
-        // TODO: remove by item id
     }
     ///? Exit from deletion
     else if (charInput == 'X' || charInput == 'x')
@@ -304,10 +297,9 @@ void removeBooking()
 ///? remove booking by id
 void removeBookingById(int id)
 {
-    for (i = id; i < length; i++)
-        bookingsOld[i - 1] = bookingsOld[i];
+
+    bookings[id - 1].isBooked = false;
     cout << "Booking removed successfully." << endl;
-    length = length - 1;
 }
 
 ///* ====================================================================
