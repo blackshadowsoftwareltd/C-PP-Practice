@@ -17,8 +17,10 @@ struct Booking
 ///* ====================================================================
 ///* Global variables ===================================================
 int length, i, flag, intInput, temp;
+double doubleInput;
 int bookingsOld[5];
 char charInput, initInput;
+string stringInput;
 Booking bookings[5];
 
 ///* ====================================================================
@@ -33,6 +35,7 @@ int viewAllEmtpybookings();
 void bookAnAvailableSpace();
 void printAvailablebookingspace();
 void removeBooking();
+void printAditionalInfoForBooking();
 void removeBookingById(int id);
 int checkIsItEmtyBook(int x);
 ///? global variables
@@ -117,7 +120,7 @@ int viewAllbookings()
         if (bookings[i].isBooked)
         {
             flag = 1;
-            cout << "ID : " << bookings[i].id << ", Name : " << bookings[i].name << ", Cost : " << bookings[i].cost << ", Slots : " << bookings[i].slots << ", For " << bookings[i].slots << "Days," << endl;
+            cout << "Slot ID : " << bookings[i].id << ", Name : " << bookings[i].name << ", Cost : " << bookings[i].cost << ", Slots : " << bookings[i].slots << ", For " << bookings[i].days << " Days," << endl;
         }
     }
     if (flag == 0)
@@ -151,9 +154,9 @@ void printAvailablebookingspace()
 {
     flag = 0;
     flag = totalAvailableBookingSpace();
-    cout << "Available booking space: " << flag << endl;
+    cout << "Available booking slots : " << flag << endl;
     cout << " ";
-    for (i = 0; i < flag; i++)
+    for (i = 0; i < length; i++)
     {
         if (!bookings[i].isBooked)
         {
@@ -161,7 +164,7 @@ void printAvailablebookingspace()
         }
     }
     cout << "=" << endl;
-    for (i = 0; i < flag; i++)
+    for (i = 0; i < length; i++)
     {
         if (!bookings[i].isBooked)
         {
@@ -170,7 +173,7 @@ void printAvailablebookingspace()
     }
     cout << " |" << endl
          << " =";
-    for (i = 0; i < flag; i++)
+    for (i = 0; i < length; i++)
     {
         if (!bookings[i].isBooked)
         {
@@ -178,6 +181,11 @@ void printAvailablebookingspace()
         }
     }
     cout << endl;
+}
+///? print aditional info for booking
+void printAditionalInfoForBooking()
+{
+    cout << "Slot cost per day BDT 100 TK" << endl;
 }
 
 ///* ====================================================================
@@ -193,24 +201,45 @@ void bookAnAvailableSpace()
     }
 
     printAvailablebookingspace();
-    intInput = length + 1;
+    printAditionalInfoForBooking();
+    int slotNumber = length + 1;
     cout << "Enter a slot number : ";
-    cin >> intInput;
-    if (intInput < 1 || intInput > length)
+    cin >> slotNumber;
+    if (slotNumber < 1 || slotNumber > length)
     {
         cout << "Invalid slot Id" << endl;
         bookAnAvailableSpace();
         return;
     }
-    temp = 0;
-    temp = checkIsItEmtyBook(intInput);
-    if (temp == 0)
+
+    if (checkIsItEmtyBook(slotNumber) == 0)
     {
-        cout << "There is no empty slot in this Id" << endl;
+        cout << "There is no empty slot in this Number" << endl;
         bookAnAvailableSpace();
         return;
     }
-    // cout<<"Enter you name : ";
+    cout << "Enter you name : ";
+    cin >> stringInput;
+    if (stringInput.length() < 1)
+    {
+        cout << "Name can not be empty" << endl;
+        bookAnAvailableSpace();
+        return;
+    }
+    cout << "Enter the number of days you want to book : ";
+    int days = 0;
+    cin >> days;
+    if (days < 1)
+    {
+        cout << "Days can not be less than 1" << endl;
+        bookAnAvailableSpace();
+        return;
+    }
+    bookings[slotNumber - 1].name = stringInput;
+    bookings[slotNumber - 1].days = days;
+    bookings[slotNumber - 1].cost = 100 * days;
+    bookings[slotNumber - 1].isBooked = true;
+
     // cin>>bookings[i].name;
     // cout<<"Enter a slot number : ";
 }
@@ -291,6 +320,7 @@ void init()
         bookings[i].id = i + 1;
         bookings[i].isBooked = false;
         bookings[i].cost = 500.0;
+        bookings[i].slots = 1;
     }
 } ///! get available booking space
 int totalAvailableBookingSpace()
