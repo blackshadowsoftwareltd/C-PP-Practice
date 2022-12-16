@@ -34,11 +34,11 @@ void bookAnAvailableSpace();
 void printAvailablebookingspace();
 void removeBooking();
 void removeBookingById(int id);
-///! global variables
+///? global variables
 
 ///* ====================================================================
 ///* Main function ======================================================
-///! Main function
+///? Main function
 int main()
 {
     init();
@@ -52,7 +52,7 @@ int main()
 
 ///* ====================================================================
 ///* Project functions ==================================================
-///! start the project
+///? start the project
 int project()
 {
     char x = getUserInitInput();
@@ -71,7 +71,7 @@ int project()
 
 ///* ====================================================================
 ///* Input functions ====================================================
-///! get users init input
+///? get users init input
 char getUserInitInput()
 {
     printInitOptions();
@@ -93,7 +93,7 @@ char getUserInitInput()
 
 ///* ====================================================================
 ///* Print functions ====================================================
-///! print init options
+///? print init options
 int printInitOptions()
 {
     cout << endl
@@ -105,7 +105,7 @@ int printInitOptions()
          << "Enter : ";
     return 0;
 }
-///! view All bookingsOld
+///? view All bookingsOld
 int viewAllbookings()
 {
     flag = 0;
@@ -125,7 +125,7 @@ int viewAllbookings()
     }
     return 0;
 }
-///! view All Empty bookings
+///? view All Empty bookings
 int viewAllEmtpybookings()
 {
     flag = 0;
@@ -145,7 +145,7 @@ int viewAllEmtpybookings()
     }
     return 0;
 }
-///! view all bookingsOld
+///? view all bookingsOld
 void printAvailablebookingspace()
 {
     flag = 0;
@@ -158,11 +158,35 @@ void printAvailablebookingspace()
     }
     cout << "Available booking space: " << flag << endl
          << endl;
+
+    for (i = 0; i < flag; i++)
+    {
+        if (!bookings[i].isBooked)
+        {
+            cout << "=====";
+        }
+    }
+    cout << endl;
+    for (i = 0; i < flag; i++)
+    {
+        if (!bookings[i].isBooked)
+        {
+            cout << "| " << bookings[i].id << " |";
+        }
+    }
+    cout << endl;
+    for (i = 0; i < flag; i++)
+    {
+        if (!bookings[i].isBooked)
+        {
+            cout << "=====";
+        }
+    }
 }
 
 ///* ====================================================================
 ///* Booking functions ==================================================
-///! book an available space
+///? book an available space
 void bookAnAvailableSpace()
 {
     i = totalAvailableBookingSpace();
@@ -180,7 +204,7 @@ void bookAnAvailableSpace()
 
 ///* ====================================================================
 ///* Remove functions ===================================================
-///! remove booking
+///? remove booking
 void removeBooking()
 {
     if (length == 0)
@@ -232,7 +256,7 @@ void removeBooking()
         removeBooking();
     }
 }
-///! remove booking by id
+///? remove booking by id
 void removeBookingById(int id)
 {
     for (i = id; i < length; i++)
