@@ -225,12 +225,22 @@ void bookAnAvailableSpace()
         return;
     }
     cout << "Enter you name : ";
-    cin >> stringInput;
-    if (stringInput.length() < 1)
+    string name;
+    try
     {
-        cout << "Name can not be empty" << endl;
+        getline(cin, name);
+    }
+    catch (...)
+    {
+        cout << "Invalid name" << endl;
         bookAnAvailableSpace();
-        return;
+    }
+    if (name.length() < 1)
+    {
+        name = "Name not found";
+        // cout << "Name can not be empty" << endl;
+        // bookAnAvailableSpace();
+        // return;
     }
     cout << "Enter the number of days you want to book : ";
     int days = 0;
@@ -241,11 +251,11 @@ void bookAnAvailableSpace()
         bookAnAvailableSpace();
         return;
     }
-    bookings[slotNumber - 1].name = stringInput;
+    bookings[slotNumber - 1].name = name;
     bookings[slotNumber - 1].days = days;
     bookings[slotNumber - 1].cost = 100 * days;
     bookings[slotNumber - 1].isBooked = true;
-
+    cout << "Booking done successfully." << endl;
     // cin>>bookings[i].name;
     // cout<<"Enter a slot number : ";
 }
@@ -272,7 +282,12 @@ void removeBooking()
          << "Enter : ";
     cin >> inputForDelete;
     ///? remove by Slot id
-    if (inputForDelete == 'I' || inputForDelete == 'i')
+    ///? Exit from deletion
+    if (inputForDelete == 'X' || inputForDelete == 'x')
+    {
+        return;
+    }
+    else if (inputForDelete == 'I' || inputForDelete == 'i')
     {
         cout << endl
              << "Enter the Slot ID to remove : ";
@@ -287,11 +302,7 @@ void removeBooking()
             removeBookingById(slID);
         }
     }
-    ///? Exit from deletion
-    else if (charInput == 'X' || charInput == 'x')
-    {
-        return;
-    }
+
     ///? Invalid input
     else
     {
@@ -323,7 +334,7 @@ void renewBookingDays()
          << "Enter I to renew by item ID." << endl
          << "Enter 'X' to Exit Previous." << endl
          << "Enter : ";
-    cin >> inputForRenew; 
+    cin >> inputForRenew;
     ///? Exit from deletion
     if (inputForRenew == 'X' || inputForRenew == 'x')
     {
