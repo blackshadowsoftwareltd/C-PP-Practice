@@ -81,8 +81,15 @@ int project()
 ///? get users init input
 char getUserInitInput()
 {
-    printInitOptions();
-    cin >> initInput;
+    try
+    {
+        printInitOptions();
+        cin >> initInput;
+    }
+    catch (...)
+    {
+        return getUserInitInput();
+    }
     if (initInput == 'E' || initInput == 'e')
         return 'E';
     else if (initInput == 'B' || initInput == 'b')
@@ -210,12 +217,24 @@ void bookAnAvailableSpace()
     printAditionalInfoForBooking();
     int slotNumber = length + 1;
     cout << "Enter a slot number : ";
-    cin >> slotNumber;
+    try
+    {
+        cin >> slotNumber;
+    }
+    catch (char)
+    {
+        cout << "Invalid slot Id" << endl;
+        return bookAnAvailableSpace();
+    }
+    catch (...)
+    {
+        cout << "Invalid slot Id" << endl;
+        return bookAnAvailableSpace();
+    }
     if (slotNumber < 1 || slotNumber > length)
     {
         cout << "Invalid slot Id" << endl;
-        bookAnAvailableSpace();
-        return;
+        return bookAnAvailableSpace();
     }
 
     if (checkIsItEmtyBook(slotNumber) == 0)
@@ -244,7 +263,15 @@ void bookAnAvailableSpace()
     }
     cout << "Enter the number of days you want to book : ";
     int days = 0;
-    cin >> days;
+    try
+    {
+        cin >> days;
+    }
+    catch (...)
+    {
+        cout << "Invalid days" << endl;
+        bookAnAvailableSpace();
+    }
     if (days < 1)
     {
         cout << "Days can not be less than 1" << endl;
@@ -280,7 +307,16 @@ void removeBooking()
          << "Enter I to remove by item ID." << endl
          << "Enter 'X' to Exit Previous." << endl
          << "Enter : ";
-    cin >> inputForDelete;
+    try
+    {
+        cin >> inputForDelete;
+    }
+    catch (...)
+    {
+        cout << endl
+             << "Invalid input. Please try again." << endl;
+        removeBooking();
+    }
     ///? remove by Slot id
     ///? Exit from deletion
     if (inputForDelete == 'X' || inputForDelete == 'x')
@@ -291,7 +327,15 @@ void removeBooking()
     {
         cout << endl
              << "Enter the Slot ID to remove : ";
-        cin >> slID;
+        try
+        {
+            cin >> slID;
+        }
+        catch (...)
+        {
+            cout << "Invalid input ID. Please try again." << endl;
+            return removeBooking();
+        }
         if (slID < 1 || slID > length)
         {
             cout << "Invalid input. Please try again." << endl;
@@ -334,7 +378,16 @@ void renewBookingDays()
          << "Enter I to renew by item ID." << endl
          << "Enter 'X' to Exit Previous." << endl
          << "Enter : ";
-    cin >> inputForRenew;
+    try
+    {
+        cin >> inputForRenew;
+    }
+    catch (...)
+    {
+        cout << endl
+             << "Invalid input. Please try again." << endl;
+        renewBookingDays();
+    }
     ///? Exit from deletion
     if (inputForRenew == 'X' || inputForRenew == 'x')
     {
@@ -345,7 +398,15 @@ void renewBookingDays()
     {
         cout << endl
              << "Enter the Slot ID to remove : ";
-        cin >> slIDFR;
+        try
+        {
+            cin >> slIDFR;
+        }
+        catch (...)
+        {
+            cout << "Invalid input ID. Please try again." << endl;
+            return renewBookingDays();
+        }
         if (slIDFR < 1 || slIDFR > length)
         {
             cout << "Invalid input. Please try again." << endl;
@@ -365,11 +426,20 @@ void renewBookingDays()
         renewBookingDays();
     }
 }
+///* renew booking by id
 void renewBookingById(int id)
 {
     int days = 0;
     cout << "Enter the number of days you want to renew : ";
-    cin >> days;
+    try
+    {
+        cin >> days;
+    }
+    catch (...)
+    {
+        cout << "Invalid days" << endl;
+        renewBookingById(id);
+    }
     if (days < 1)
     {
         cout << "Days can not be less than 1" << endl;
