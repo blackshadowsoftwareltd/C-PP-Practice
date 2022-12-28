@@ -247,8 +247,7 @@ void bookAnAvailableSpace()
     string name;
     try
     {
-        // getline(cin, name);
-        cin >> name;
+        getline(cin, name);
     }
     catch (...)
     {
@@ -273,9 +272,9 @@ void bookAnAvailableSpace()
         cout << "Invalid days" << endl;
         bookAnAvailableSpace();
     }
-    if (days < 1 || days >= 10)
+    if (days < 1)
     {
-        cout << "Days can not be less than 1 or " << endl;
+        cout << "Days can not be less than 1" << endl;
         bookAnAvailableSpace();
         return;
     }
@@ -283,8 +282,7 @@ void bookAnAvailableSpace()
     bookings[slotNumber - 1].days = days;
     bookings[slotNumber - 1].cost = 100 * days;
     bookings[slotNumber - 1].isBooked = true;
-    cout << endl
-         << "Booking done successfully." << endl;
+    cout << "Booking done successfully." << endl;
     // cin>>bookings[i].name;
     // cout<<"Enter a slot number : ";
 }
@@ -368,7 +366,7 @@ void removeBookingById(int id)
 ///* update function ====================================================
 void renewBookingDays()
 {
-    if (totalAvailableBookingSpace() == length)
+    if (totalAvailableBookingSpace() == 5)
     {
         cout << "No bookings found to rnew !!." << endl;
         return;
