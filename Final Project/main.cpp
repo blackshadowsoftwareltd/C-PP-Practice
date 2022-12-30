@@ -290,9 +290,6 @@ void bookAnAvailableSpace()
 }
 
 ///* ====================================================================
-///* Read functions =====================================================
-
-///* ====================================================================
 ///* Remove functions ===================================================
 ///? remove booking
 void removeBooking()
@@ -452,6 +449,7 @@ void renewBookingById(int id)
     bookings[id - 1].cost = 100 * days;
     cout << "Booking renewed successfully." << endl;
 }
+
 ///* ====================================================================
 ///* Helper functions ===================================================
 void init()
@@ -465,6 +463,7 @@ void init()
         bookings[i].slots = 1;
     }
 } ///! get available booking space
+////* total available booking space
 int totalAvailableBookingSpace()
 {
     int f = 0;
@@ -477,6 +476,7 @@ int totalAvailableBookingSpace()
     }
     return f;
 }
+////* check is it empty book
 int checkIsItEmtyBook(int x)
 {
     if (!bookings[x - 1].isBooked)
