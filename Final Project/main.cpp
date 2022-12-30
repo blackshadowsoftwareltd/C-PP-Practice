@@ -6,6 +6,7 @@ using namespace std;
 
 ///* ====================================================================
 ///* Struct =============================================================
+
 struct Booking
 {
     int id, slots, days;
@@ -16,6 +17,7 @@ struct Booking
 
 ///* ====================================================================
 ///* Global variables ===================================================
+
 int length, i, flag, intInput, temp;
 double doubleInput;
 int bookingsOld[5];
@@ -25,6 +27,7 @@ Booking bookings[5];
 
 ///* ====================================================================
 ///* functions define ===================================================
+
 void init();
 int project();
 char getUserInitInput();
@@ -44,7 +47,8 @@ void renewBookingById(int id);
 
 ///* ====================================================================
 ///* Main function ======================================================
-///? Main function
+
+////* Main function
 int main()
 {
     init();
@@ -57,7 +61,8 @@ int main()
 
 ///* ====================================================================
 ///* Project functions ==================================================
-///? start the project
+
+////* start the project
 int project()
 {
     char x = getUserInitInput();
@@ -78,7 +83,8 @@ int project()
 
 ///* ====================================================================
 ///* Input functions ====================================================
-///? get users init input
+
+////* get users init input
 char getUserInitInput()
 {
     try
@@ -109,7 +115,8 @@ char getUserInitInput()
 
 ///* ====================================================================
 ///* Print functions ====================================================
-///? print init options
+
+////* print init options
 int printInitOptions()
 {
     cout << endl
@@ -122,7 +129,8 @@ int printInitOptions()
          << "Enter : ";
     return 0;
 }
-///? view All bookingsOld
+
+////* view All bookingsOld
 int viewAllbookings()
 {
     flag = 0;
@@ -142,7 +150,8 @@ int viewAllbookings()
     }
     return 0;
 }
-///? view All Empty bookings
+
+////* view All Empty bookings
 int viewAllEmtpybookings()
 {
     flag = 0;
@@ -162,7 +171,8 @@ int viewAllEmtpybookings()
     }
     return 0;
 }
-///? view all bookingsOld
+
+////* view all bookingsOld
 void printAvailablebookingspace()
 {
     flag = 0;
@@ -195,7 +205,8 @@ void printAvailablebookingspace()
     }
     cout << endl;
 }
-///? print aditional info for booking
+
+////* print aditional info for booking
 void printAditionalInfoForBooking()
 {
     cout << "Slot cost per day BDT 100 TK" << endl;
@@ -203,7 +214,8 @@ void printAditionalInfoForBooking()
 
 ///* ====================================================================
 ///* Booking functions ==================================================
-///? book an available space
+
+////* book an available space
 void bookAnAvailableSpace()
 {
     i = totalAvailableBookingSpace();
@@ -291,7 +303,8 @@ void bookAnAvailableSpace()
 
 ///* ====================================================================
 ///* Remove functions ===================================================
-///? remove booking
+
+////* remove booking
 void removeBooking()
 {
     if (totalAvailableBookingSpace() == 0)
@@ -354,7 +367,8 @@ void removeBooking()
         removeBooking();
     }
 }
-///? remove booking by id
+
+////* remove booking by id
 void removeBookingById(int id)
 {
     bookings[id - 1].isBooked = false;
@@ -425,6 +439,7 @@ void renewBookingDays()
         renewBookingDays();
     }
 }
+
 ///* renew booking by id
 void renewBookingById(int id)
 {
@@ -452,6 +467,8 @@ void renewBookingById(int id)
 
 ///* ====================================================================
 ///* Helper functions ===================================================
+
+////* init
 void init()
 {
     length = 5;
@@ -463,6 +480,7 @@ void init()
         bookings[i].slots = 1;
     }
 } ///! get available booking space
+
 ////* total available booking space
 int totalAvailableBookingSpace()
 {
@@ -476,6 +494,7 @@ int totalAvailableBookingSpace()
     }
     return f;
 }
+
 ////* check is it empty book
 int checkIsItEmtyBook(int x)
 {
