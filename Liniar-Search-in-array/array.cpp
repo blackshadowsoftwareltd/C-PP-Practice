@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-  int main()
+int main()
 {
     int size, i, item, position = 0;
     cout << "Enter the size of an Array : ";
@@ -12,19 +12,38 @@ using namespace std;
     for (i = 0; i < size; i++)
         cin >> arr[i];
 
-      cout << "Inserted elements of Array is : ";
+    cout << "Inserted elements of Array is : ";
     for (i = 0; i < size; i++)
         cout << arr[i] << " ";
 
-    cout << "\Insert the search Item : ";
+    cout << "Insert the search Item : ";
     cin >> item;
 
-      while (arr[position] != item && position < size)
-        position++;
-      if (position == size)
-            cout
-        << "Item does not exis in this Array";
-    else cout << position << " is the location of this item " << item;
-
-      cout << endl;
+    // while (arr[position] != item && position < size)
+    //     position++;
+    // if (position == size)
+    //     cout
+    //         << "Item does not exis in this Array";
+    // else
+    //     cout << position << " is the location of this item " << item;
+    
+    int x = NULL;
+    for (i = 0; i < size; i++)
+    {
+        if (arr[i] == item)
+        {
+            x = i;
+            break;
+        }
+    }
+    if (x == NULL)
+    {
+        cout
+            << "Item does not exis in this Array";
+    }
+    else
+    {
+        cout << i << " is the location of this item " << item;
+    }
+    return 0;
 }
